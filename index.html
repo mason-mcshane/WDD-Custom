@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marvel Rivals Counter Picker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Marvel Rivals Counter Picker</h1>
+  <input type="text" id="enemyInput" placeholder="Enter enemy hero (e.g., Iron Man)" />
+  <button onclick="getCounter()">Suggest Counter</button>
+  <div id="result"></div>
+
+  <script>
+    // Basic counter matchups
+    const counterMap = {
+      "iron man": ["Magneto", "Storm"],
+      "spider-man": ["Venom", "Green Goblin"],
+      "hulk": ["Black Widow", "Doctor Strange"],
+      "thor": ["Loki", "Magneto"],
+      "captain america": ["Red Skull", "Ultron"]
+    };
+
+    function getCounter() {
+      const input = document.getElementById("enemyInput").value.toLowerCase().trim();
+      const resultDiv = document.getElementById("result");
+
+      if (counterMap[input]) {
+        const counters = counterMap[input];
+        resultDiv.innerHTML = `Counter Picks for <strong>${capitalize(input)}</strong>: ${counters.join(", ")}`;
+      } else {
+        resultDiv.innerHTML = `No counter data for <strong>${capitalize(input)}</strong>. Try another hero.`;
+      }
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+  </script>
+</body>
+</html>
